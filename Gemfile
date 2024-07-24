@@ -32,3 +32,7 @@ group :development do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
 end
+
+gem 'devise'
+gem 'devise_saml_authenticatable'
+gem 'jwt'

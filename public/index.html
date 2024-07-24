@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>CognitoDemo</title>
+</head>
+<body>
+<form id="myForm">
+    <input name="token" required type="text">
+    <button id="login" type="button">Login</button>
+</form>
+
+<script>
+    document.getElementById('login').addEventListener('click', async function () {
+        const endpoint = 'http://0.0.0.0:3000/cognito';
+
+        const form = document.getElementById('myForm');
+        const formData = new FormData(form);
+
+        const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${formData.get("token")}`
+            }
+        });
+
+        if (response.redirected) {
+            window.location.href = response.url;
+        } else {
+            alert("An unknown error occurred.");
+        }
+    });
+</script>
+</body>
+</html>
